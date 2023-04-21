@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 #PHYSICS VARIABLES
 var GRAVITY = 10
+var FLIGHT_GRAVITY = 1
 var MAX_SPEED = 100
 var ACCEL = 50
 var JUMP_HEIGHT = 250
@@ -11,7 +12,14 @@ var velocity = Vector2.ZERO
 var friction = false
 #STATE MACHINE VARIABLES
 var current_state := 0
-enum { IDLE, ATTACK, RUN, JUMP, FALL, CROUCH, SLIDE, RUSH, WALL_SLIDE, D_JUMP, CROUCH_RUN, HURT, DEAD, EXIT, DEFENSE, CAST_CHARGE, CAST }
+
+enum { 
+	IDLE, ATTACK, RUN, JUMP, FALL, 
+	CROUCH, SLIDE, RUSH, WALL_SLIDE,
+ D_JUMP, CROUCH_RUN, HURT, DEAD, EXIT,
+ DEFENSE, CAST_CHARGE, CAST,FLIGHT
+ }
+
 var enter_state := true
 #MISC VARIABLES
 var canjump = true
@@ -41,6 +49,7 @@ onready var exit_raycastL = $Exit_raycasts/exit_raycastL
 onready var col_stand = $Collision_stand
 onready var col_slide = $Collision_slide
 onready var col_crouch = $Collision_crouch
+
 onready var hitbox_attack = $Hitbox/Attack_hitbox
 onready var hurtbox = $hurtbox/collision
 onready var particle_charge = $Particles2D
@@ -49,6 +58,7 @@ onready var partner = $partner
 onready var audio_manager = $audio_manager
 onready var hit_fx = preload("res://Prefabs/fx_hit.tscn")
 onready var fireball = preload("res://Prefabs/Fire_ball.tscn")
+onready var transform_fx = preload("res://Prefabs/TransformFX.tscn")
 #SOUND_FX VARIABLES
 var sfx_jump : AudioStream = load("res://Sounds/SFX/hero_jump.wav")
 var sfx_attack1 : AudioStream = load("res://Sounds/SFX/hero_atk1.wav")
@@ -131,6 +141,8 @@ func _physics_process(delta):
 			castcharge_state(delta)
 		CAST:
 			cast_state(delta)
+		FLIGHT:
+			flight_state(delta)
 	
 	if current_state == CROUCH_RUN:
 		MAX_SPEED = 50
@@ -427,6 +439,21 @@ func cast_state(_delta):
 	yield(get_tree().create_timer(.5), "timeout")
 	set_state(check_cast_state())
 
+func flight_state(_delta):
+	if enter_state:
+		velocity.y = 0
+		audio_manager.play_sfx(sfx_rush)
+		instance_transform_fx()
+		sprite.play("flight")
+		enter_state = false
+	_gravity(_delta)
+	if p_input:
+		_move()
+	_move_and_slide()
+	_collision_handler()
+	set_state(check_flight_state())
+
+
 #CHECK FUNCTIONS---------------------------------------------------------------------------------------------------------------------------------------------
 func check_idle_state():
 	var new_state = current_state
@@ -502,6 +529,8 @@ func check_fall_state():
 		new_state = WALL_SLIDE
 	elif !is_on_floor() and Input.is_action_just_pressed("ui_select") and Global.upgrades.double_jump == true:
 		new_state = D_JUMP
+	elif !is_on_floor() and Input.is_action_pressed("ui_select") and Global.upgrades.flight == true:
+		new_state = FLIGHT
 	elif hit == true:
 		new_state = HURT
 	elif exit == true and is_on_floor():
@@ -598,6 +627,8 @@ func check_doublejump_state():
 		new_state = ATTACK
 	elif on_wall and (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")):
 		new_state = WALL_SLIDE
+	elif !is_on_floor() and Input.is_action_just_pressed("ui_select") and Global.upgrades.flight == true:
+		new_state = FLIGHT
 	elif hit == true:
 		new_state = HURT
 	elif exit == true:
@@ -676,9 +707,28 @@ func check_cast_state():
 		new_state = HURT
 	return new_state
 
+func check_flight_state():
+	var new_state = current_state
+	var on_wall = raycast_wall1.is_colliding() and raycast_wall2.is_colliding() and raycast_wall3.is_colliding() and raycast_wall4.is_colliding() and raycast_wall5.is_colliding()
+	if is_on_floor():
+		new_state = IDLE
+	elif Input.is_action_just_pressed("ui_action"):
+		new_state = ATTACK
+	elif on_wall and (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")):
+		new_state = WALL_SLIDE
+	elif Input.is_action_just_released("ui_select"):
+		new_state = FALL
+	elif hit == true:
+		new_state = HURT
+	elif exit == true:
+		new_state = EXIT
+	return new_state
 #HELPERS---------------------------------------------------------------------------------------------------------------------------------------------
 func _gravity(_delta):
-	velocity.y += GRAVITY
+	if current_state == FLIGHT:
+		velocity.y += FLIGHT_GRAVITY
+	else:
+		velocity.y += GRAVITY
 	
 func _move_and_slide():
 	velocity = move_and_slide(velocity, Vector2.UP)
@@ -778,6 +828,11 @@ func instance_fireball():
 		f_ball.global_position.x = self.position.x-25
 		f_ball.velocity = f_ball.velocity * -1
 		f_ball.scale.x = -1
+
+func instance_transform_fx():
+	var trans_fx = transform_fx.instance()
+	self.add_child(trans_fx)
+	trans_fx.global_position.y = self.position.y+18
 
 func get_item(area):
 	if area.name == "item_LifeUP_area":

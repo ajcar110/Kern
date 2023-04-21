@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=2]
+[gd_scene load_steps=162 format=2]
 
 [ext_resource path="res://Assets/Player/Player sprites/air/AIR.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Player/Player sprites/wall slide/WallSlide.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Assets/Player/Player sprites/defense/Block.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Player/Player sprites/slide/Roll.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Player/Player sprites/air/D_Jump.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Player/Player sprites/air/Flight.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack1-03.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack1-01.png" type="Texture" id=32]
 [ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack1-02.png" type="Texture" id=38]
@@ -308,6 +309,30 @@ region = Rect2( 256, 0, 64, 64 )
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 48, 48 )
 
+[sub_resource type="AtlasTexture" id=131]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 32, 24 )
+
+[sub_resource type="AtlasTexture" id=132]
+atlas = ExtResource( 15 )
+region = Rect2( 32, 0, 32, 24 )
+
+[sub_resource type="AtlasTexture" id=133]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 0, 32, 24 )
+
+[sub_resource type="AtlasTexture" id=134]
+atlas = ExtResource( 15 )
+region = Rect2( 96, 0, 32, 24 )
+
+[sub_resource type="AtlasTexture" id=135]
+atlas = ExtResource( 15 )
+region = Rect2( 128, 0, 32, 24 )
+
+[sub_resource type="AtlasTexture" id=136]
+atlas = ExtResource( 15 )
+region = Rect2( 160, 0, 32, 24 )
+
 [sub_resource type="AtlasTexture" id=48]
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 48, 48 )
@@ -558,6 +583,11 @@ animations = [ {
 "name": "fall",
 "speed": 6.0
 }, {
+"frames": [ SubResource( 131 ), SubResource( 132 ), SubResource( 133 ), SubResource( 134 ), SubResource( 135 ), SubResource( 136 ) ],
+"loop": true,
+"name": "flight",
+"speed": 10.0
+}, {
 "frames": [ SubResource( 48 ) ],
 "loop": false,
 "name": "hurt",
@@ -649,8 +679,8 @@ environment = SubResource( 19 )
 material = SubResource( 20 )
 position = Vector2( 0, 16 )
 frames = SubResource( 2 )
-animation = "idle"
-frame = 5
+animation = "flight"
+frame = 4
 playing = true
 
 [node name="Collision_stand" type="CollisionShape2D" parent="."]

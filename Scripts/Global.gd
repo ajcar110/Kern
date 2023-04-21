@@ -25,7 +25,8 @@ var cell_data = {}
 
 var upgrades = {
 	slide = false, double_jump = false, rush = false,
-	fireball = false, red_sword = false, best_shield = false
+	fireball = false, red_sword = false, best_shield = false,
+	flight = true
 }
 
 var keybinds = {}
