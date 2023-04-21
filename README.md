@@ -1,3 +1,2 @@
 # KERN
-
-attempt #1000 at making a metroidvania
+this is the 1000th attempt at making a metroidvania
