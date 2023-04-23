@@ -1,12 +1,12 @@
-[gd_scene load_steps=166 format=2]
+[gd_scene load_steps=175 format=2]
 
 [ext_resource path="res://Assets/Player/Player sprites/air/AIR.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Player/Player sprites/wall slide/WallSlide.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player/Player sprites/wall slide/Ledge_Grab.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Player/Player sprites/run max speed/Centicorn.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Player/Player sprites/run max speed/Run.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Player/Player sprites/idle/IDLE.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Player/Player sprites/attack ground/JAB.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Player/Player sprites/attack ground/Knee.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Player/Player sprites/attack ground/kicks.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Player/Player sprites/attack ground/Punch.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Player/Player sprites/crouch walk/Kern Crouch Walk.png" type="Texture" id=10]
@@ -15,16 +15,14 @@
 [ext_resource path="res://Assets/Player/Player sprites/slide/Roll.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Player/Player sprites/air/D_Jump.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Player/Player sprites/air/Flight.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Player/Player sprites/attack air/DropKick.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Player/Player sprites/attack air/DAIR.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack1-03.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack1-01.png" type="Texture" id=32]
 [ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack1-02.png" type="Texture" id=38]
 [ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack1-00.png" type="Texture" id=40]
 [ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack3-02.png" type="Texture" id=44]
-[ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack3-00.png" type="Texture" id=45]
 [ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack3-01.png" type="Texture" id=46]
-[ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack2-01.png" type="Texture" id=48]
-[ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack2-00.png" type="Texture" id=50]
-[ext_resource path="res://Assets/Player/Player sprites/attack air/adventurer-air-attack2-02.png" type="Texture" id=51]
 [ext_resource path="res://Assets/Player/Player sprites/die/adventurer-die-00.png" type="Texture" id=65]
 [ext_resource path="res://Assets/Player/Player sprites/die/adventurer-die-01.png" type="Texture" id=66]
 [ext_resource path="res://Assets/Player/Player sprites/die/adventurer-die-03.png" type="Texture" id=67]
@@ -101,29 +99,37 @@ region = Rect2( 320, 0, 64, 64 )
 atlas = ExtResource( 6 )
 region = Rect2( 384, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=63]
+[sub_resource type="AtlasTexture" id=170]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 64, 64 )
+region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=64]
+[sub_resource type="AtlasTexture" id=171]
 atlas = ExtResource( 7 )
-region = Rect2( 64, 0, 64, 64 )
+region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=65]
+[sub_resource type="AtlasTexture" id=172]
 atlas = ExtResource( 7 )
-region = Rect2( 128, 0, 64, 64 )
+region = Rect2( 96, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=66]
+[sub_resource type="AtlasTexture" id=173]
 atlas = ExtResource( 7 )
-region = Rect2( 192, 0, 64, 64 )
+region = Rect2( 144, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=67]
+[sub_resource type="AtlasTexture" id=174]
 atlas = ExtResource( 7 )
-region = Rect2( 256, 0, 64, 64 )
+region = Rect2( 192, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=68]
+[sub_resource type="AtlasTexture" id=175]
 atlas = ExtResource( 7 )
-region = Rect2( 320, 0, 64, 64 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=176]
+atlas = ExtResource( 7 )
+region = Rect2( 288, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=177]
+atlas = ExtResource( 7 )
+region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=69]
 atlas = ExtResource( 9 )
@@ -157,9 +163,49 @@ region = Rect2( 384, 0, 64, 64 )
 atlas = ExtResource( 9 )
 region = Rect2( 448, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=77]
-atlas = ExtResource( 9 )
-region = Rect2( 512, 0, 64, 64 )
+[sub_resource type="AtlasTexture" id=163]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=164]
+atlas = ExtResource( 17 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=165]
+atlas = ExtResource( 17 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=166]
+atlas = ExtResource( 17 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=167]
+atlas = ExtResource( 17 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=168]
+atlas = ExtResource( 17 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=169]
+atlas = ExtResource( 17 )
+region = Rect2( 288, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=157]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=158]
+atlas = ExtResource( 16 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=159]
+atlas = ExtResource( 16 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=160]
+atlas = ExtResource( 16 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=105]
 atlas = ExtResource( 12 )
@@ -505,17 +551,13 @@ region = Rect2( 240, 0, 48, 48 )
 atlas = ExtResource( 13 )
 region = Rect2( 288, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=51]
+[sub_resource type="AtlasTexture" id=161]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=52]
+[sub_resource type="AtlasTexture" id=162]
 atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=53]
-atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -524,12 +566,12 @@ animations = [ {
 "name": "attack1",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ) ],
+"frames": [ SubResource( 170 ), SubResource( 171 ), SubResource( 172 ), SubResource( 173 ), SubResource( 174 ), SubResource( 175 ), SubResource( 176 ), SubResource( 177 ) ],
 "loop": false,
 "name": "attack2",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ) ],
+"frames": [ SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ) ],
 "loop": false,
 "name": "attack3",
 "speed": 12.0
@@ -539,12 +581,12 @@ animations = [ {
 "name": "attack_air1",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 50 ), ExtResource( 48 ), ExtResource( 51 ) ],
+"frames": [ SubResource( 163 ), SubResource( 164 ), SubResource( 165 ), SubResource( 166 ), SubResource( 167 ), SubResource( 168 ), SubResource( 169 ) ],
 "loop": false,
 "name": "attack_air2",
-"speed": 12.0
+"speed": 18.0
 }, {
-"frames": [ ExtResource( 45 ), ExtResource( 46 ), ExtResource( 44 ), ExtResource( 46 ), ExtResource( 44 ) ],
+"frames": [ SubResource( 157 ), SubResource( 158 ), SubResource( 159 ), SubResource( 160 ) ],
 "loop": false,
 "name": "attack_air3",
 "speed": 12.0
@@ -639,7 +681,7 @@ animations = [ {
 "name": "slide_stop",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
+"frames": [ SubResource( 161 ), SubResource( 162 ) ],
 "loop": false,
 "name": "wall_slide",
 "speed": 5.0
@@ -695,8 +737,8 @@ environment = SubResource( 19 )
 material = SubResource( 20 )
 position = Vector2( 0, 16 )
 frames = SubResource( 2 )
-animation = "rush"
-frame = 4
+animation = "attack2"
+frame = 7
 playing = true
 
 [node name="Collision_stand" type="CollisionShape2D" parent="."]
@@ -737,11 +779,12 @@ wait_time = 0.5
 one_shot = true
 
 [node name="ghost_timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.3
 autostart = true
 
 [node name="attackreset_timer" type="Timer" parent="."]
-wait_time = 0.3
+process_mode = 0
+wait_time = 0.35
 one_shot = true
 
 [node name="knockback_timer" type="Timer" parent="."]

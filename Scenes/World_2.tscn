@@ -58,47 +58,50 @@ position = Vector2( 128, 48 )
 
 [node name="item_LifeUp" parent="Item_Group" instance=ExtResource( 25 )]
 
+[node name="sprite" parent="Item_Group/item_LifeUp" index="0"]
+frame = 0
+
 [node name="item_ManaUp" parent="Item_Group" instance=ExtResource( 24 )]
 position = Vector2( 32, 0 )
 
 [node name="sprite" parent="Item_Group/item_ManaUp" index="0"]
-frame = 0
+frame = 5
 
 [node name="item_RedSword" parent="Item_Group" instance=ExtResource( 26 )]
 position = Vector2( 64, 0 )
 
 [node name="sprite" parent="Item_Group/item_RedSword" index="0"]
-frame = 1
+frame = 6
 
 [node name="item_BestShield" parent="Item_Group" instance=ExtResource( 27 )]
 position = Vector2( 96, 0 )
 
 [node name="sprite" parent="Item_Group/item_BestShield" index="0"]
-frame = 3
+frame = 1
 
 [node name="item_SlideBoots" parent="Item_Group" instance=ExtResource( 28 )]
 position = Vector2( 128, 0 )
 
 [node name="sprite" parent="Item_Group/item_SlideBoots" index="0"]
-frame = 1
+frame = 6
 
 [node name="item_SpeedScarf" parent="Item_Group" instance=ExtResource( 29 )]
 position = Vector2( 160, 0 )
 
 [node name="sprite" parent="Item_Group/item_SpeedScarf" index="0"]
-frame = 3
+frame = 1
 
 [node name="item_DoubleBoots" parent="Item_Group" instance=ExtResource( 30 )]
 position = Vector2( 192, 0 )
 
 [node name="sprite" parent="Item_Group/item_DoubleBoots" index="0"]
-frame = 1
+frame = 6
 
 [node name="item_FlameGauntlet" parent="Item_Group" instance=ExtResource( 31 )]
 position = Vector2( 224, 0 )
 
 [node name="sprite" parent="Item_Group/item_FlameGauntlet" index="0"]
-frame = 0
+frame = 5
 
 [node name="Life_Recover" parent="." instance=ExtResource( 33 )]
 position = Vector2( 63, 108 )
@@ -111,9 +114,10 @@ position = Vector2( 416, 0 )
 
 [node name="Water_body" parent="." instance=ExtResource( 6 )]
 position = Vector2( -272, 128 )
-d = 0.1
+d = 0.25
 distance_between_springs = 18
-spring_number = 11
+spring_number = 30
+border_thickness = 2.0
 
 [node name="Water_body2" parent="." instance=ExtResource( 6 )]
 position = Vector2( -48, 128 )

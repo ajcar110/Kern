@@ -284,6 +284,7 @@ func slide_state(_delta):
 func rush_state(_delta):
 	sprite.play("rush")
 	if enter_state:
+		instance_transform_fx()
 		audio_manager.play_sfx(sfx_rush)
 		enter_state = false
 	#	Movimento Esquerda
@@ -529,7 +530,7 @@ func check_fall_state():
 		new_state = WALL_SLIDE
 	elif !is_on_floor() and Input.is_action_just_pressed("ui_select") and Global.upgrades.double_jump == true:
 		new_state = D_JUMP
-	elif !is_on_floor() and Input.is_action_pressed("ui_select") and Global.upgrades.flight == true:
+	elif !is_on_floor() and Input.is_action_pressed("ui_shift") and Global.upgrades.flight == true:
 		new_state = FLIGHT
 	elif hit == true:
 		new_state = HURT
@@ -547,7 +548,7 @@ func check_crouch_state():
 		new_state = ATTACK
 	elif !is_on_floor():
 		new_state = FALL
-	elif Input.is_action_just_pressed("ui_select") and Global.upgrades.slide == true:
+	elif Input.is_action_just_pressed("ui_shift") and Global.upgrades.slide == true:
 		dash_timer.start()
 		new_state = SLIDE
 	elif hit == true:
@@ -627,7 +628,7 @@ func check_doublejump_state():
 		new_state = ATTACK
 	elif on_wall and (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")):
 		new_state = WALL_SLIDE
-	elif !is_on_floor() and Input.is_action_just_pressed("ui_select") and Global.upgrades.flight == true:
+	elif !is_on_floor() and Input.is_action_just_pressed("ui_shift") and Global.upgrades.flight == true:
 		new_state = FLIGHT
 	elif hit == true:
 		new_state = HURT
@@ -711,16 +712,21 @@ func check_flight_state():
 	var new_state = current_state
 	var on_wall = raycast_wall1.is_colliding() and raycast_wall2.is_colliding() and raycast_wall3.is_colliding() and raycast_wall4.is_colliding() and raycast_wall5.is_colliding()
 	if is_on_floor():
+		instance_transform_fx()
 		new_state = IDLE
 	elif Input.is_action_just_pressed("ui_action"):
+		instance_transform_fx()
 		new_state = ATTACK
 	elif on_wall and (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")):
 		new_state = WALL_SLIDE
-	elif Input.is_action_just_released("ui_select"):
+	elif Input.is_action_just_released("ui_shift"):
+		instance_transform_fx()
 		new_state = FALL
 	elif hit == true:
+		instance_transform_fx()
 		new_state = HURT
 	elif exit == true:
+		instance_transform_fx()
 		new_state = EXIT
 	return new_state
 #HELPERS---------------------------------------------------------------------------------------------------------------------------------------------
