@@ -1,5 +1,5 @@
 extends Control
-var music_title : AudioStream = load("res://Sounds/BGM/jackfluck - Fantasy Style Loop.wav")
+var music_title : AudioStream = load("res://Sounds/BGM/Title_Test.wav")
 var sfx_cursor : AudioStream = load("res://Sounds/SFX/ui_cursor.wav")
 var sfx_accept : AudioStream = load("res://Sounds/SFX/ui_accept.wav")
 var sfx_cancel : AudioStream = load("res://Sounds/SFX/ui_cancel.wav")

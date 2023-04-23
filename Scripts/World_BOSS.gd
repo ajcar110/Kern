@@ -119,7 +119,7 @@ func _on_anim_fade_animation_finished(anim_name):
 	if anim_name == "fade-in":
 		bg_spr.texture = load("res://Assets/Enemies/Boss_MotherEye/bg4_dead.png")
 		fade_white.play("full_color")
-		$MotherEyer_Boss.queue_free()
+		$ThothHead.queue_free()
 		yield(get_tree().create_timer(3), "timeout")
 		fade_white.play("fade-out")
 	if anim_name == "fade-out":

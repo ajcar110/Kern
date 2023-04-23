@@ -1,0 +1,238 @@
+[gd_scene load_steps=43 format=2]
+
+[ext_resource path="res://Assets/Enemies/Boss_Thoth/Thoth_hurt.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Enemies/Boss_Thoth/Thoth_idle_P2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Enemies/Boss_Thoth/Thoth_hurt_P2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemies/Boss_Thoth/Thoth_Die.png" type="Texture" id=4]
+[ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Thoth.gd" type="Script" id=12]
+[ext_resource path="res://Assets/UI/Boss_HP/boss_hp_progress.png" type="Texture" id=23]
+[ext_resource path="res://Assets/UI/Boss_HP/boss_hp_delay.png" type="Texture" id=24]
+[ext_resource path="res://Assets/UI/Boss_HP/boss_hp_back.png" type="Texture" id=25]
+[ext_resource path="res://Assets/UI/Boss_HP/HealthmeterOverlay.png" type="Texture" id=26]
+[ext_resource path="res://Scripts/Boss_Lifebar.gd" type="Script" id=27]
+[ext_resource path="res://Prefabs/Explosion_Boss.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Assets/Enemies/Boss_Thoth/Thoth_idle.png" type="Texture" id=30]
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 4 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 3 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 3 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 3 )
+region = Rect2( 512, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": false,
+"name": "die",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": false,
+"name": "hurt",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 30 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": false,
+"name": "p2_hurt",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "p2_idle",
+"speed": 8.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 32.0
+
+[node name="Thoth" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_vertical_guides_": [ 160.0 ]
+}
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+flip_h = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="knockback_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="hurtbox" type="Area2D" parent="." groups=["E_Hurtbox"]]
+collision_layer = 256
+collision_mask = 1088
+
+[node name="hurtbox_collision" type="CollisionShape2D" parent="hurtbox"]
+self_modulate = Color( 0.843137, 0, 0.545098, 0.364706 )
+shape = SubResource( 3 )
+
+[node name="audio_manager" parent="." instance=ExtResource( 11 )]
+
+[node name="Boss_HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 27 )
+
+[node name="Lifebar" type="TextureProgress" parent="Boss_HUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = 69.0
+margin_right = 256.0
+margin_bottom = 133.0
+rect_scale = Vector2( 0.33, 0.33 )
+texture_over = ExtResource( 26 )
+
+[node name="L_Delay" type="TextureProgress" parent="Boss_HUD/Lifebar"]
+show_behind_parent = true
+margin_left = -6.06059
+margin_top = 3.03027
+margin_right = 121.939
+margin_bottom = 7.03027
+rect_scale = Vector2( 2.5, 5 )
+texture_under = ExtResource( 25 )
+texture_progress = ExtResource( 24 )
+
+[node name="Life" type="TextureProgress" parent="Boss_HUD/Lifebar"]
+show_behind_parent = true
+margin_left = -6.06059
+margin_top = 3.03027
+margin_right = 121.939
+margin_bottom = 7.03027
+rect_scale = Vector2( 2.5, 5 )
+value = 100.0
+texture_progress = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Boss_HUD/Lifebar"]
+wait_time = 0.05
+
+[node name="Explosion_Boss" parent="." instance=ExtResource( 29 )]
+
+[node name="Particles2D" parent="Explosion_Boss" index="0"]
+emitting = false
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="timeout" from="knockback_timer" to="." method="_on_knockback_timer_timeout"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Boss_HUD/Lifebar/Timer" to="Boss_HUD" method="_on_Timer_timeout"]
+
+[editable path="Explosion_Boss"]

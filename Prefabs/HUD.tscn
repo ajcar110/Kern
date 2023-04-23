@@ -11,20 +11,19 @@ script = ExtResource( 4 )
 [node name="LifeBar" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Lifebar" parent="LifeBar" instance=ExtResource( 1 )]
-margin_left = -11.0
-margin_right = 117.0
+margin_right = 128.0
 
 [node name="Mini_Map" parent="." instance=ExtResource( 2 )]
 pause_mode = 0
-margin_left = 239.0
-margin_top = 5.0
-margin_right = -1.0
-margin_bottom = -130.0
+anchor_left = 1.0
+anchor_bottom = 0.0
+margin_left = -64.0
+margin_top = 7.0
+margin_right = 16.0
+margin_bottom = 52.0
+rect_scale = Vector2( 0.75, 0.75 )
 
 [node name="Sprite" type="Sprite" parent="Mini_Map"]
 position = Vector2( 38, 21 )

@@ -2,8 +2,8 @@ extends Node
 
 var player
 var partner
-var hp = 100
-var max_hp = 100
+var hp = 50
+var max_hp = 50
 var mp = 20
 var max_mp = 20
 var coins = 0
