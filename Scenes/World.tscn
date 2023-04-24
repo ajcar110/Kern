@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Character/Kern.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Scene_change.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Prefabs/audio_manager.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Prefabs/CelMap_sensor.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Prefabs/Tileset/GrassTileset.tres" type="TileSet" id=19]
+[ext_resource path="res://Prefabs/item_SpeedScarf.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scripts/Hidden_object.gd" type="Script" id=21]
 [ext_resource path="res://Prefabs/Tileset/GrassTileset_no_collision.tres" type="TileSet" id=22]
 [ext_resource path="res://Character/Flying_Eye.tscn" type="PackedScene" id=23]
@@ -26,6 +27,7 @@
 [ext_resource path="res://Character/Dark_Eye.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Character/Mushroom.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Character/NPC_01.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Prefabs/item_LifeUp.tscn" type="PackedScene" id=28]
 
 [sub_resource type="TileSet" id=3]
 1/name = "Brick Rough.png 1"
@@ -306,6 +308,12 @@ shape = SubResource( 2 )
 
 [node name="item_DoubleBoots" parent="." instance=ExtResource( 11 )]
 position = Vector2( 107, 488 )
+
+[node name="item_LifeUp" parent="." instance=ExtResource( 28 )]
+position = Vector2( 625, 136 )
+
+[node name="item_SpeedScarf" parent="." instance=ExtResource( 20 )]
+position = Vector2( 168, 150 )
 
 [connection signal="body_entered" from="Hidden_object/Area2D" to="Hidden_object" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Hidden_object/Area2D" to="Hidden_object" method="_on_Area2D_body_exited"]

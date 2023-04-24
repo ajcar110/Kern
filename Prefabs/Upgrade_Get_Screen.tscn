@@ -14,7 +14,6 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="Get_Upgrade" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -49,7 +48,7 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="."]
 pause_mode = 2
-wait_time = 4.0
+wait_time = 2.0
 one_shot = true
 
 [connection signal="visibility_changed" from="Get_Upgrade" to="." method="_on_Get_Upgrade_visibility_changed"]

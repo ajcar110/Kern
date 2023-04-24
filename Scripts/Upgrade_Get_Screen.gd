@@ -30,7 +30,7 @@ func set_panel():
 		sprite.texture = panel_manaup
 		text.text = "Max Mana has increased"
 	elif current_upgrade == 2:
-		text.text = "Press DOWN+JUMP to Slide"
+		text.text = "Press DOWN+DASH to Slide"
 		sprite.texture = panel_slideboots
 	elif current_upgrade == 3:
 		text.text = "Press JUMP while in the air to do a Double Jump"
