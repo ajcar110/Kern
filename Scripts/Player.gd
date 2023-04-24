@@ -39,6 +39,7 @@ onready var coyote_timer = $coyote_timer
 onready var dash_timer = $dash_timer
 onready var attack_timer = $attackreset_timer
 onready var knockback_timer = $knockback_timer
+onready var raycast_roof = $Collision_crouch/CrouchRoof
 onready var raycast_wall1 = $Wall_raycast/raycast_wall1
 onready var raycast_wall2 = $Wall_raycast/raycast_wall2
 onready var raycast_wall3 = $Wall_raycast/raycast_wall3
@@ -106,6 +107,10 @@ func _physics_process(delta):
 # warning-ignore:return_value_discarded
 #	get_parent().connect("force_idle", self, "force_idle")
 	
+	if is_on_floor():
+		raycast_roof.enabled = true
+	else:
+		raycast_roof.enabled = false
 	match current_state:
 		IDLE:
 			idle_state(delta)
@@ -287,13 +292,13 @@ func rush_state(_delta):
 		instance_transform_fx()
 		audio_manager.play_sfx(sfx_rush)
 		enter_state = false
-	#	Movimento Esquerda
+
 	if Input.is_action_pressed("ui_left"):
-		velocity.x = max(velocity.x-ACCEL, -MAX_SPEED*2) # Aceleração e Limitar Velocidade
+		velocity.x = max(velocity.x-ACCEL, -MAX_SPEED*2)
 		sprite.flip_h = true
-	#	Movimento Direita
+
 	elif Input.is_action_pressed("ui_right"):
-		velocity.x = min(velocity.x+ACCEL, MAX_SPEED*2) # Aceleração e Limitar Velocidade
+		velocity.x = min(velocity.x+ACCEL, MAX_SPEED*2) 
 		sprite.flip_h = false
 	_gravity(_delta)
 	_move_and_slide()
@@ -520,6 +525,7 @@ func check_jump_state():
 	return new_state
 
 func check_fall_state():
+	# do not have a fall after a tight crouch
 	var new_state = current_state
 	var on_wall = raycast_wall1.is_colliding() and raycast_wall2.is_colliding() and raycast_wall3.is_colliding() and raycast_wall4.is_colliding() and raycast_wall5.is_colliding()
 	if is_on_floor():
@@ -540,7 +546,7 @@ func check_fall_state():
 
 func check_crouch_state():
 	var new_state = current_state
-	if !Input.is_action_pressed("ui_down"):
+	if !Input.is_action_pressed("ui_down") and !raycast_roof.is_colliding():
 		new_state = IDLE
 	elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
 		new_state = CROUCH_RUN
@@ -638,7 +644,7 @@ func check_doublejump_state():
 
 func check_crouchrun_state():
 	var new_state = current_state
-	if (!Input.is_action_pressed("ui_left")) and (!Input.is_action_pressed("ui_right")) and (Input.is_action_pressed("ui_down")):
+	if (!Input.is_action_pressed("ui_left")) and (!Input.is_action_pressed("ui_right")) and ((Input.is_action_pressed("ui_down") or raycast_roof.is_colliding())):
 		new_state = CROUCH
 	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_right") and (!Input.is_action_pressed("ui_down")):
 		new_state = RUN
@@ -646,7 +652,7 @@ func check_crouchrun_state():
 		new_state = ATTACK
 	elif !is_on_floor():
 		new_state = FALL
-	elif !Input.is_action_pressed("ui_down"):
+	elif !Input.is_action_pressed("ui_down") and !raycast_roof.is_colliding():
 		new_state = IDLE
 	elif hit == true:
 		new_state = HURT
@@ -779,7 +785,7 @@ func _collision_handler():
 		col_slide.disabled = false
 		col_stand.disabled = true
 		col_crouch.disabled = true
-	elif current_state == CROUCH || current_state == CROUCH_RUN || current_state == D_JUMP:
+	elif current_state == CROUCH || current_state == CROUCH_RUN:
 		col_slide.disabled = true
 		col_stand.disabled = true
 		col_crouch.disabled = false
@@ -787,7 +793,7 @@ func _collision_handler():
 		col_slide.disabled = true
 		col_stand.disabled = false
 		col_crouch.disabled = true
-		col_crouch.position.y = 21.5
+#		col_crouch.position.y = 21.5
 		
 	if current_state == DEAD:
 		hurtbox.disabled = true
